@@ -16,6 +16,7 @@ public class ZipFile {
         PNG_TO_JPG.put("pre_face.png", "pre_face.jpg");
         PNG_TO_JPG.put("pre_icon1.png", "pre_icon1.jpg");
         PNG_TO_JPG.put("pre_icon2.png", "pre_icon2.jpg");
+        PNG_TO_JPG.put("home_bg.png", "home_bg.jpg");
         PNG_TO_JPG.put("pre_lockscreen.png", "pre_lockscreen.jpg");
         PNG_TO_JPG.put("zzzzz_gn_brief_lockscreen_lockpaper.png",
                 "zzzzz_gn_brief_lockscreen_lockpaper.jpg");

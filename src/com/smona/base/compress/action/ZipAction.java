@@ -46,7 +46,7 @@ public class ZipAction implements IAction {
                 String desFolder = desTempFile.substring(0, position);
 
                 String filePath = fs[i].getPath();
-                ZipFileAction.copyFileWithDir(filePath, desFolder, desFile);
+                ZipFileAction.copyFileWithDir(filePath, desFolder, desFile.replace(".jpg", ".png"));
             }
         }
     }
