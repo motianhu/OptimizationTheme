@@ -28,7 +28,7 @@ public class ZipAction implements IAction {
 
     private void copyJpg(String path) throws IOException {
         String postJng = path + Util.DIR_SPLIT + Util.PROCESS + Util.DIR_SPLIT
-                + Util.PRE_JPG;
+                + Util.POST_JPG;
 
         File dir = new File(postJng);
         File[] fs = dir.listFiles();
@@ -46,14 +46,14 @@ public class ZipAction implements IAction {
                 String desFolder = desTempFile.substring(0, position);
 
                 String filePath = fs[i].getPath();
-                ZipFileAction.copyFileWithDir(filePath, desFolder, desFile.replace(".jpg", ".png"));
+                ZipFileAction.copyFileWithDir(filePath, path + desFolder, desFile.replace(".jpg", ".png"));
             }
         }
     }
 
     private void copyPng(String path) throws IOException {
         String postJng = path + Util.DIR_SPLIT + Util.PROCESS + Util.DIR_SPLIT
-                + Util.PRE_PNG;
+                + Util.POST_PNG;
 
         File dir = new File(postJng);
         File[] fs = dir.listFiles();
@@ -71,7 +71,7 @@ public class ZipAction implements IAction {
                 String desFolder = desTempFile.substring(0, position);
 
                 String filePath = fs[i].getPath();
-                ZipFileAction.copyFileWithDir(filePath, desFolder, desFile);
+                ZipFileAction.copyFileWithDir(filePath, path + desFolder, desFile);
             }
         }
     }

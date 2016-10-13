@@ -14,7 +14,7 @@ public class Main {
         Logger.init();
         String path = System.getProperty("user.dir");
         Util.printDetail(path);
-        action(args == null || args.length == 0 ? "zip" : args[0], path);
+        action(args == null || args.length == 0 ? "unzip" : args[0], path);
     }
 
     private static void action(String cmd, String path) {

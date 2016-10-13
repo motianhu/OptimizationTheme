@@ -140,8 +140,11 @@ public class ZipFileAction {
             String desFile) throws IOException {
         (new File(desFolder)).mkdirs();
         FileInputStream input = new FileInputStream(srcFile);
-        FileOutputStream output = new FileOutputStream(desFolder + "/"
-                + desFile);
+        FileOutputStream output = new FileOutputStream(desFolder
+                + Util.DIR_SPLIT + desFile);
+        Util.printDetail("copyFile: srcFile[" + srcFile + "];destFile["
+                + (desFolder + Util.DIR_SPLIT + desFile) + "]");
+
         byte[] b = new byte[1024 * 8];
         int len;
         while ((len = input.read(b)) != -1) {
@@ -155,8 +158,10 @@ public class ZipFileAction {
     public static void copyFile(String srcFile, String desFolder, String desFile)
             throws IOException {
         FileInputStream input = new FileInputStream(srcFile);
-        FileOutputStream output = new FileOutputStream(desFolder + "/"
-                + desFile);
+        FileOutputStream output = new FileOutputStream(desFolder
+                + Util.DIR_SPLIT + desFile);
+        Util.printDetail("copyFile: srcFile[" + srcFile + "];destFile["
+                + desFile + "]");
         byte[] b = new byte[1024 * 8];
         int len;
         while ((len = input.read(b)) != -1) {
@@ -196,8 +201,8 @@ public class ZipFileAction {
                 temp.delete();
             }
             if (temp.isDirectory()) {
-                delAllFile(path + "/" + tempList[i]);
-                delFolder(path + "/" + tempList[i]);
+                delAllFile(path + Util.DIR_SPLIT + tempList[i]);
+                delFolder(path + Util.DIR_SPLIT + tempList[i]);
                 flag = true;
             }
         }

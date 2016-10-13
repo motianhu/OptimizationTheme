@@ -43,7 +43,8 @@ public class ZipFile {
         createDir(unZipPath);
 
         try {
-            action.unZip(mThemePath + Util.DIR_SPLIT + mThemeName + ".gnz", unZipPath);
+            action.unZip(mThemePath + Util.DIR_SPLIT + mThemeName + ".gnz",
+                    unZipPath);
             return true;
         } catch (Exception e) {
             Util.printDetail("unzipFile: " + e);
@@ -57,12 +58,17 @@ public class ZipFile {
                 + Util.DIR_SPLIT + mThemeName;
         File root = new File(fromSource);
         if (!root.exists()) {
+            Util.printDetail("ERROR[copyFileFrom]: fromSource[" + fromSource
+                    + "]: not exists!");
             return;
         }
         if (root.isFile()) {
+            Util.printDetail("ERROR[copyFileFrom]: fromSource[" + fromSource
+                    + "]: is File!");
             return;
         }
 
+        Util.printDetail("copyFileFrom: fromSource[" + fromSource + "]");
         copyFile(root);
 
     }
@@ -70,7 +76,6 @@ public class ZipFile {
     private void copyFile(File dir) throws IOException {
         File[] fs = dir.listFiles();
         for (int i = 0; i < fs.length; i++) {
-
             if (fs[i].isDirectory()) {
                 copyFile(fs[i]);
             } else if (fs[i].isFile()) {
@@ -79,22 +84,22 @@ public class ZipFile {
                         || fileName.toUpperCase().endsWith(".JPEG")) {
                     String path = fs[i].getPath();
                     ZipFileAction.copyFile(path, mRootPath + Util.DIR_SPLIT
-                            + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_JPG
-                            + Util.DIR_SPLIT,
-                            path.replace(Util.DIR_SPLIT, Util.DIR_REPLACE));
+                            + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_JPG,
+                            path.substring(mRootPath.length(), path.length())
+                                    .replace(Util.DIR_SPLIT, Util.DIR_REPLACE));
                 } else if (PNG_TO_JPG.containsKey(fileName)) {
                     String path = fs[i].getPath();
                     ZipFileAction.copyFile(path, mRootPath + Util.DIR_SPLIT
-                            + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_JPG
-                            + Util.DIR_SPLIT,
-                            path.replace(Util.DIR_SPLIT, Util.DIR_REPLACE)
+                            + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_JPG,
+                            path.substring(mRootPath.length(), path.length())
+                                    .replace(Util.DIR_SPLIT, Util.DIR_REPLACE)
                                     .replace(".png", ".jpg"));
                 } else if (fileName.toUpperCase().endsWith(".PNG")) {
                     String path = fs[i].getPath();
                     ZipFileAction.copyFile(path, mRootPath + Util.DIR_SPLIT
-                            + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_PNG
-                            + Util.DIR_SPLIT,
-                            path.replace(Util.DIR_SPLIT, Util.DIR_REPLACE));
+                            + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_PNG,
+                            path.substring(mRootPath.length(), path.length())
+                                    .replace(Util.DIR_SPLIT, Util.DIR_REPLACE));
                 } else {
                     String srcPath = fs[i].getPath();
                     String desTempFile = srcPath.replace(Util.DIR_SPLIT

@@ -43,8 +43,8 @@ public class UnZipAction implements IAction {
     private void listTheme(String path) {
         String themeResPath = path + Util.DIR_SPLIT + Util.SOURCE;
 
-        Util.printDetail("themeResPath: " + themeResPath);
-        Util.printDetail("path: " + path);
+        Util.printDetail("listTheme themeResPath: " + themeResPath);
+        Util.printDetail("listTheme path: " + path);
 
         File rootFile = new File(themeResPath);
         File[] files = rootFile.listFiles();

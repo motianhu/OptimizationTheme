@@ -1,5 +1,7 @@
 package com.smona.base.compress.common;
 
+import java.io.File;
+
 public class Util {
 
     public static final String SOURCE = "source";
@@ -16,7 +18,7 @@ public class Util {
     public static final String UNZIP = "unzip";
     public static final String ZIP = "zip";
 
-    public static final String DIR_SPLIT = "/";
+    public static final String DIR_SPLIT = File.separator;
 
     public static final String DIR_REPLACE = "--";
     
