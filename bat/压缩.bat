@@ -1,2 +1,2 @@
-java -Dfile.encoding=GBK -jar compress.jar zip
+java -Dfile.encoding=GBK -jar OptimizationTheme.jar zip
 pause

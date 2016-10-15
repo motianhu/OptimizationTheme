@@ -1,5 +1,7 @@
 package com.smona.base.compress;
 
+import java.io.IOException;
+
 import com.smona.base.compress.action.IAction;
 import com.smona.base.compress.action.UnZipAction;
 import com.smona.base.compress.action.ZipAction;
@@ -21,9 +23,19 @@ public class Main {
         if ("unzip".equals(cmd)) {
             IAction unzip = new UnZipAction();
             unzip.execute(path);
+            executeVBS();
         } else if ("zip".equals(cmd)) {
             IAction zip = new ZipAction();
             zip.execute(path);
+        }
+    }
+    
+    private static void executeVBS() {
+        try {
+            Runtime.getRuntime().exec("cscript VBScript.vbs");
+        } catch (IOException e) {
+            Util.printDetail("ERROR[executeVBS] e=" + e);
+            e.printStackTrace();
         }
     }
 }

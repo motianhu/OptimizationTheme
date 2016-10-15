@@ -33,6 +33,10 @@ public class UnZipAction implements IAction {
                 + Util.PRE_JPG); // /process/prejpg
         createDir(path + Util.DIR_SPLIT + Util.PROCESS + Util.DIR_SPLIT
                 + Util.PRE_PNG);// /process/prepng
+        createDir(path + Util.DIR_SPLIT + Util.PROCESS + Util.DIR_SPLIT
+                + Util.POST_JPG);// /process/postjpg
+        createDir(path + Util.DIR_SPLIT + Util.PROCESS + Util.DIR_SPLIT
+                + Util.POST_PNG);// /process/postpng
     }
 
     private void unzip(String path) {
