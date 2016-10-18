@@ -83,13 +83,14 @@ public class ZipFile {
                 String path = fs[i].getPath();
                 System.out.println("path: " + path);
                 String format = ValidateImageFormat.validateImageType(path);
+                boolean isNormalType = ValidateImageFormat.isSupportImageScaleType(path);
                 if (format.equals("JPG")) {
                     ZipFileAction.copyFile(path, mRootPath + Util.DIR_SPLIT
                             + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_JPG,
                             path.substring(mRootPath.length(), path.length())
                                     .replace(Util.DIR_SPLIT, Util.DIR_REPLACE)
                                     .replace(".png", ".jpg"));
-                } else if (format.equals("PNG")) {
+                } else if (isNormalType && format.equals("PNG")) {
                     ZipFileAction.copyFile(path, mRootPath + Util.DIR_SPLIT
                             + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_PNG,
                             path.substring(mRootPath.length(), path.length())
