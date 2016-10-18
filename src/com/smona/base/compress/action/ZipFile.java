@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import com.smona.base.compress.common.FileOperator;
 import com.smona.base.compress.common.Util;
+import com.smona.base.compress.common.ValidateImageFormat;
 import com.smona.base.compress.common.ZipFileAction;
 
 public class ZipFile {
@@ -79,30 +80,23 @@ public class ZipFile {
             if (fs[i].isDirectory()) {
                 copyFile(fs[i]);
             } else if (fs[i].isFile()) {
-                String fileName = fs[i].getName();
-                if (fileName.toUpperCase().endsWith(".JPG")
-                        || fileName.toUpperCase().endsWith(".JPEG")) {
-                    String path = fs[i].getPath();
-                    ZipFileAction.copyFile(path, mRootPath + Util.DIR_SPLIT
-                            + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_JPG,
-                            path.substring(mRootPath.length(), path.length())
-                                    .replace(Util.DIR_SPLIT, Util.DIR_REPLACE));
-                } else if (PNG_TO_JPG.containsKey(fileName)) {
-                    String path = fs[i].getPath();
+                String path = fs[i].getPath();
+                System.out.println("path: " + path);
+                String format = ValidateImageFormat.validateImageType(path);
+                if (format.equals("JPG")) {
                     ZipFileAction.copyFile(path, mRootPath + Util.DIR_SPLIT
                             + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_JPG,
                             path.substring(mRootPath.length(), path.length())
                                     .replace(Util.DIR_SPLIT, Util.DIR_REPLACE)
                                     .replace(".png", ".jpg"));
-                } else if (fileName.toUpperCase().endsWith(".PNG")) {
-                    String path = fs[i].getPath();
+                } else if (format.equals("PNG")) {
                     ZipFileAction.copyFile(path, mRootPath + Util.DIR_SPLIT
                             + Util.PROCESS + Util.DIR_SPLIT + Util.PRE_PNG,
                             path.substring(mRootPath.length(), path.length())
-                                    .replace(Util.DIR_SPLIT, Util.DIR_REPLACE));
+                                    .replace(Util.DIR_SPLIT, Util.DIR_REPLACE)
+                                    .replace(".jpg", ".png"));
                 } else {
-                    String srcPath = fs[i].getPath();
-                    String desTempFile = srcPath.replace(Util.DIR_SPLIT
+                    String desTempFile = path.replace(Util.DIR_SPLIT
                             + Util.UNZIP + Util.DIR_SPLIT, Util.DIR_SPLIT
                             + Util.ZIP + Util.DIR_SPLIT);
 
